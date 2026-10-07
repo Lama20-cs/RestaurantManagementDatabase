@@ -208,6 +208,39 @@ SELECT Role, COUNT(*) AS total_staff
 FROM Staff
 GROUP BY Role;
 
+ALTER TABLE Orders
+ADD PRIMARY KEY (Order_ID);
 
+ALTER TABLE Dish
+ADD PRIMARY KEY (Dish_ID);
 
+ALTER TABLE Order_Details
+ADD FOREIGN KEY (Order_ID) REFERENCES Orders(Order_ID);
 
+ALTER TABLE Order_Details
+ADD FOREIGN KEY (Dish_ID) REFERENCES Dish(Dish_ID);
+
+ALTER TABLE Orders
+ADD FOREIGN KEY (Staff_ID) REFERENCES Staff(Staff_ID);
+
+ALTER TABLE Order_Details
+ADD CHECK (Quantity > 0);
+
+ALTER TABLE Orders
+ADD CHECK (Total_Amount >= 0);
+
+DESCRIBE Orders;
+
+DESCRIBE Dish;
+
+DESCRIBE Order_Details;
+
+SELECT * FROM Orders;
+
+SELECT * FROM Dish;
+
+SELECT * FROM Staff;
+
+SELECT * FROM Customer;
+
+SELECT * FROM Order_Details;
